@@ -67,6 +67,11 @@ public:
                 p = tmp;
             }
         }
+
+        if(min == roots.end())
+            throw std::logic_error{"bad min value"};
+        else if(node->data < min->data)
+            min = node;
     }
 
 private:
@@ -85,7 +90,7 @@ private:
 
     void cleanup()
     {
-        std::vector<NodePtr> v(std::log2(size) + 1, roots.end());
+        std::vector<NodePtr> v(std::log2(size) + 2, roots.end());
         auto it = roots.begin();
         while(it != roots.end())
         {
@@ -121,13 +126,6 @@ private:
         roots.splice(roots.end(), (*node->parent)->children, node);
         node->parent = {};
         node->marked = false;
-
-        if(roots.size() < 2)
-            throw std::logic_error{"bad roots list size"};
-        if(min == roots.end())
-            throw std::logic_error{"bad min value"};
-        if(node->data < min->data)
-            min = node;
     }
 
     std::list<Node> roots;
