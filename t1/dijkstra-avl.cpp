@@ -1,3 +1,4 @@
+#include "loader/loader.h"
 #include "tree/avl.h"
 
 #include <cstddef>
@@ -65,16 +66,9 @@ std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& g, int s)
 
 int main(int argc, char* argv[])
 {
-    Graph g({
-        {0, {{1, 1}, {2, 3}, {5, 3}}},
-        {1, {{0, 1}, {2, 5}, {3, 1}}},
-        {2, {{0, 3}, {1, 5}, {3, 2}, {4, 1}}},
-        {3, {{1, 1}, {2, 2}, {4, 4}}},
-        {4, {{2, 1}, {3, 4}, {5, 5}}},
-        {5, {{0, 3}, {4, 5}}}
-    });
+    Graph g{loader::loadGraphFile(argv[1])};
 
-    auto [d, pred] = dijkstra(g, 3);
+    auto [d, pred] = dijkstra(g, std::stoi(argv[2]));
 
     auto print_vector = [](const auto& v)
     {
