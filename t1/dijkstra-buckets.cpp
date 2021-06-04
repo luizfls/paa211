@@ -25,8 +25,6 @@ int extract_min(Buckets::iterator& it)
 
 void decrease_key(Buckets& buckets, const std::vector<int>& d, int v, int k)
 {
-    std::cout << "decreasing from (" << d[v] << ", " << v
-              << ") to (" << k << ", " << v << ")\n";
     auto it = std::find(buckets[d[v]].begin(), buckets[d[v]].end(), v);
     buckets[k].splice(buckets[k].end(), buckets[d[v]], it);
 }
@@ -74,7 +72,6 @@ std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& g, int s)
     {
         // 1.1
         auto v = extract_min(bucketIt);
-        std::cout << "selected min: " << d[v] << " " << v << "\n";
 
         // 1.2
         S.insert(v);

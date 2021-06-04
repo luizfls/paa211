@@ -16,9 +16,6 @@ template <typename Tree>
 void decrease_key(Tree& t, std::pair<int, int> old_key,
                            std::pair<int, int> new_key)
 {
-    std::cout << "decreasing from (" << old_key.first << ", "
-              << old_key.second << ") to (" << new_key.first
-              << ", " << new_key.second << ")\n";
     t.remove(old_key);
     t.insert(new_key);
 }
@@ -43,7 +40,6 @@ std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& g, int s)
     {
         // 1.1
         auto [_, v] = t.extract_min();
-        std::cout << "selected min: " << _ << " " << v << "\n";
 
         // 1.2
         S.insert(v);

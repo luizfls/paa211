@@ -58,8 +58,6 @@ std::pair<int, int> extract_min(std::vector<std::pair<int, int>>& h,
 void decrease_key(std::vector<std::pair<int, int>>& h,
                   std::unordered_map<int, std::size_t>& m, std::size_t i, int k)
 {
-    std::cout << "decreasing from (" << h[i].first << ", " << h[i].second
-              << ") to (" << k << ", " << h[i].second << ")\n";
     h[i].first = k;
     while(i > 0)
     {
@@ -101,7 +99,6 @@ std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& g, int s)
     {
         // 1.1
         auto [_, v] = extract_min(h, m);
-        std::cout << "selected min: " << d[v] << " " << v << "\n";
 
         // 1.2
         S.insert(v);

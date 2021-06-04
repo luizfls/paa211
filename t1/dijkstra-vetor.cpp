@@ -21,8 +21,6 @@ int extract_min(const std::unordered_set<int>& S,
 
 void decrease_key(std::vector<int>& v, std::size_t w, int d)
 {
-    std::cout << "decreasing from (" << v[w] << ", " << w
-              << ") to (" << d << ", " << w << ")\n";
     v[w] = d;
 }
 
@@ -41,7 +39,6 @@ std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& g, int s)
     {
         // 1.1
         auto v = extract_min(S_, d);
-        std::cout << "selected min: " << d[v] << " " << v << "\n";
 
         // 1.2
         S.insert(v);

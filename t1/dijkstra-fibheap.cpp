@@ -15,8 +15,6 @@ using FibHeap = FibonacciHeap<std::pair<int, int>>;
 
 void decrease_key(FibHeap& fh, FibHeap::NodePtr node, int k)
 {
-    std::cout << "decreasing from (" << node->data.first << ", " << node->data.second
-              << ") to (" << k << ", " << node->data.second << ")\n";
     fh.decrease_key(node, k);
 }
 
@@ -44,7 +42,6 @@ std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& g, int s)
     {
         // 1.1
         auto [_, v] = fh.extract_min();
-        std::cout << "selected min: " << d[v] << " " << v << "\n";
 
         // 1.2
         S.insert(v);
