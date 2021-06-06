@@ -97,17 +97,24 @@ int main(int argc, char* argv[])
     Graph g{loader::loadGraphFile(argv[1])};
 
     auto [d, pred] = dijkstra(g, std::stoi(argv[2]));
+    auto infinite_cost = (g.size() - 1) * highest_cost(g) + 1;
 
-    auto print_vector = [](const auto& v)
+    auto print_vector = [infinite_cost](const auto& v)
     {
         std::cout << "[";
         if(!v.empty())
         {
-            std::cout << v.front();
+            if(v.front() == infinite_cost)
+                std::cout << "\u221E";
+            else
+                std::cout << v.front();
             for(auto it = std::next(v.cbegin()); it != v.cend(); ++it)
             {
                 std::cout << ", ";
-                std::cout << *it;
+                if(*it == infinite_cost)
+                    std::cout << "\u221E";
+                else
+                    std::cout << *it;
             }
         }
         std::cout << "]";

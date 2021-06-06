@@ -70,11 +70,17 @@ int main(int argc, char* argv[])
         std::cout << "[";
         if(!v.empty())
         {
-            std::cout << v.front();
+            if(v.front() == std::numeric_limits<int>::max())
+                std::cout << "\u221E";
+            else
+                std::cout << v.front();
             for(auto it = std::next(v.cbegin()); it != v.cend(); ++it)
             {
                 std::cout << ", ";
-                std::cout << *it;
+                if(*it == std::numeric_limits<int>::max())
+                    std::cout << "\u221E";
+                else
+                    std::cout << *it;
             }
         }
         std::cout << "]";
